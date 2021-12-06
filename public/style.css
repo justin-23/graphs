@@ -1,0 +1,247 @@
+:root {
+    --vertex-radius: 30px;
+    --vertex-padding: 50px;
+    --vertex-outer: calc(var(--vertex-radius) + 20px);
+
+    --button-normal: rgb(247, 247, 247);
+    --button-important: rgb(77, 77, 167);
+    --button-medium: rgb(221, 221, 233);
+
+    --font-normal: rgb(18, 12, 32);
+    --font-important: rgb(233, 237, 250);
+    --transition-time: 0.4s;
+
+    --color-default: #b8b8be;
+    --red: #030b1f;
+}
+
+.notransition {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+  }
+  
+.vertexOuter {
+    position: absolute;
+}
+
+
+.vertexColor {
+    /*width: calc(2 * var(--vertex-outer));
+    height: calc(2 * var(--vertex-outer));
+    top: calc(-1* var(--vertex-outer));
+    left: calc(-1* var(--vertex-outer));
+    */
+    width: calc(2 * var(--vertex-radius));
+    height: calc(2 * var(--vertex-radius));
+    top: calc(-1 * var(--vertex-radius));
+    left: calc(-1 * var(--vertex-radius));
+    
+    z-index: 30;
+    /*mix-blend-mode: screen;*/
+    position: absolute;
+    pointer-events: none;
+
+    border-radius: var(--vertex-outer);
+
+    transition-property: background-color;
+    transition-delay: calc(var(--transition-time) / 3);
+    transition-duration: calc(var(--transition-time) / 3);
+    transition-timing-function: cubic-bezier(.65,.04,.28,.97); /*cubic-bezier(0.8, -0.01, 0.07, 0.99); */
+
+}
+.vertex {
+    position: absolute; 
+    width: calc(2 * var(--vertex-radius));
+    height: calc(2 * var(--vertex-radius));
+    /*background-color: black;/*#03002b; /*rgb(135, 167, 167);*/
+    /*border: 4px solid rgb(54, 66, 66);*/
+    position: absolute;
+    left: calc(0px - var(--vertex-radius));
+    top: calc(0px - var(--vertex-radius));
+    border-radius: calc(0px + var(--vertex-radius));
+
+    z-index: 10;
+
+}
+
+.startVertex {
+    background-color: grey;
+}
+
+.vertexSpacer {
+    left: calc(0px - var(--vertex-padding) - var(--vertex-radius));
+    top: calc(0px - var(--vertex-padding) - var(--vertex-radius));
+    width: calc(2 * var(--vertex-padding) + 4 * var(--vertex-radius));
+    height: calc(2 * var(--vertex-padding) + 4 * var(--vertex-radius));
+    /*border: 1px dashed blue;*/
+    border-radius: calc(2 * var(--vertex-padding) + 4 * var(--vertex-radius));
+    position: absolute;
+    z-index: 9;
+}
+
+.edge {
+    height: 60px;
+    /*border: 2px solid #4ead6e;
+    background-color: #60c080;*/
+    position: absolute;
+    transform-origin: top left;
+    z-index: 5;
+    mix-blend-mode: darken;
+}
+
+
+/*.
+edge_inner_side {
+    clip-path: path(nonzero, "M 16 16 L 16 0 C 22 12 22 12 40 12 L 40 16 M 16 16 L 16 32 C 22 20 22 20 40 20 L 40 16");
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: -16px;
+
+
+
+    background-color: black;
+}
+.edge_inner_left {
+    left: 9.4px;
+}
+
+.edge_inner_right {
+    left: calc(100% - 9.4px);
+    transform-origin: left;
+    transform: scaleX(-1);
+
+}*/
+.edge_inner {
+
+    /*height: 8px;
+    width: calc(100% - 2 * var(--vertex-outer));
+
+    position: absolute;
+    top: -4px;
+    left: var(--vertex-outer);
+  */
+
+    position: absolute;
+    top: -30px;
+    height: 60px;
+    width: 100%;
+    left: 1px;
+    background-position-x: 100%;
+    background-repeat: no-repeat;
+    background-size: 300% auto;
+    transition: background-position-x var(--transition-time) ease, background-image var(--transition-time) ease, clip-path calc(var(--transition-time) / 3) cubic-bezier(.65,.04,.28,.97);
+    /*transition-property: background-position-x, background-image, clip-path;
+    transition-duration: calc(0.7 * var(--transition-time));/*calc(var(--transition-time) / 3);*/
+
+}
+
+.edge_arrow {
+    position: absolute;
+    top: -12px;
+    left: calc(70% - 10px);
+    border-style:solid;
+    border-color:inherit;
+    border-width: 0px 0px 4px 4px;
+    transform: scaleX(0.7) rotate(225deg);
+    width: 20px;
+    height: 20px;
+}
+.edge_inner:hover {
+    background-position-x: 0%;
+}
+.edge_transition {
+    clip-path:path(nonzero, "M 16 26 L 16 0 C 16 26 484 26 484 16 L 484 26 M 16 26 L 16 52 C 16 26 484 26 484 36 L 484 26");
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: -26px;
+    transition-timing-function: cubic-bezier(0.8, -0.01, 0.07, 0.99); 
+}
+
+
+.board { 
+    width: 100%;
+    height: 1000px;
+
+    background-color:white;
+}
+
+.title {
+    width: 100%;
+    text-align: left;
+    color: grey;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.boardDisplay {
+    position: relative;
+    height: 100%;
+}
+
+.guiOuter {
+    height: 80px;
+    padding: 4px;
+    border: 1px solid red;
+}
+
+.guiCategory {
+    display: inline-block;
+    border: 1px solid blue;
+    border-radius: 5px;
+    margin-left: 15px;
+}
+
+.disable{
+    pointer-events: none;
+    opacity: 40%;
+}
+.guiEdit, .guiTest, .guiMode {
+
+    
+}
+
+
+
+.guiCategory > div {
+    background: var(--button-normal);
+    color: var(--font-normal);
+    display: inline-block;
+    padding:8px;
+    border: 1px solid blue;
+    border-radius: 5px;
+    margin: 5px;
+    
+}
+.clickElement:hover {
+    -webkit-filter: brightness(90%);
+}
+
+.clickElement:active{
+    -webkit-filter: brightness(70%);
+}
+
+.clickImportant {
+    background: var(--button-important);
+    color: var(--font-important);
+}
+
+.clickMedium {
+    background: var(--button-medium);
+    color: var(--font-normal);
+}
+
+.box {
+    position: absolute;
+    height: 66.5px;
+    width: 66.5px;
+    border: 4px solid rgb(187, 187, 187);
+    border-radius: 35.25px;
+    
+}
